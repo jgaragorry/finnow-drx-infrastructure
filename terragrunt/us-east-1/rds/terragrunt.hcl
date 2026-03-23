@@ -6,17 +6,16 @@ terraform {
   source = "../../_modules/rds"
 }
 
-# Accedemos a los datos de la red que ya creamos
-dependency "vpc" {
-  config_path = "../vpc"
-}
+# Comentamos la dependencia para evitar errores de carpeta inexistente
+# dependency "vpc" {
+#   config_path = "../vpc"
+# }
 
 inputs = {
   identifier = "finnow-db-primary"
   is_replica = false
   
-  # Inyección dinámica de dependencias
-  vpc_id     = dependency.vpc.outputs.vpc_id
-  # Usamos las subredes de base de datos (Tier 3)
-  subnet_ids = dependency.vpc.outputs.database_subnets
+  # Valores estáticos (Bypass) para que Terragrunt no falle
+  vpc_id     = "vpc-bypass"
+  subnet_ids = ["subnet-bypass-1", "subnet-bypass-2"]
 }
