@@ -1,0 +1,21 @@
+cat <<EOF > ~/finnow-drx-infrastructure/.gitignore
+# Terraform / Terragrunt
+.terraform/
+.terragrunt-cache/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+*.tfvars.json
+.terraform.lock.hcl
+
+# Secretos y Logs
+*.pem
+*.key
+*.log
+crash.log
+
+# OS y Editores
+.DS_Store
+.idea/
+.vscode/
+EOF
